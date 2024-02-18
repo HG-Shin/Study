@@ -1,13 +1,10 @@
 from collections import deque
 
-T = int(input())
-
 def bfs():
     dx = [-1, 1, 2, 2, 1, -1, -2, -2]
     dy = [2, 2, 1, -1, -2, -2, -1, 1]
 
     q = deque([(s_x, s_y)])
-    visited[s_x][s_y] = 1
 
     while q:
         x, y = q.popleft()
@@ -20,11 +17,14 @@ def bfs():
             nx = x + dx[i]
             ny = y + dy[i]
 
+            if nx < 0 or nx >= n or ny < 0 or ny >=n:
+                continue
+
             if visited[nx][ny] == 0:
                 visited[nx][ny] = visited[x][y] + 1
                 q.append((nx, ny))
 
-
+T = int(input())
 
 for _ in range(T):
     n = int(input())
